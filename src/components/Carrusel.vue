@@ -7,13 +7,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="https://i.pinimg.com/originals/9e/38/13/9e3813503c31c068146fbb8cd18db0de.jpg" class="d-block" alt="...">
+      <img src="https://a-static.besthdwallpaper.com/cielo-de-color-rosa-hermosa-papel-pintado-1600x600-10593_84.jpg" class="d-block" alt="...">
     </div>
     <div class="carousel-item">
       <img src="https://blog.expansive.mx/wp-content/uploads/2018/02/Que-es-un-desarrollo-vertical-y-un-desarrollo-horizontal-al-invertir-en-Bienes-Raices.jpg" class="d-block" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg" class="d-block" alt="...">
+      <img src="https://i.pinimg.com/originals/79/f6/88/79f688eca8651b0acbc8217493999f4f.jpg" class="d-block" alt="...">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
