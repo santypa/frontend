@@ -8,7 +8,7 @@
       <form @submit.prevent="guardar">
         <div class="row">
              <div class="col col-lg-4 col-xl-3">
-              <label for="nombre">Nombre</label> <br>
+              <label for="nombre">Tipo de establecimiento</label> <br>
               <input type="text" placeholder="Nombre completo..." v-model="nombre" id="nombre"> 
              </div>
             <div class="col col-lg-4 col-xl-3">
@@ -94,6 +94,7 @@ export default {
           "clave":this.clave,
           "telefono":this.telefono,
           "direccion":this.direccion,
+          "nempresa":this.empresa,
           
       })),
       form.append('files.img', this.imagen)

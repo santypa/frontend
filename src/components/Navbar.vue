@@ -116,10 +116,10 @@ export default {
         console.log(localStorage.getItem('token'))
         if (localStorage.getItem('token')==null) {
           document.getElementById("ing").style.display="block"
-          document.getElementById("mi").style.display="block"
+          document.getElementById("mi").style.display="none"
         } else {
           document.getElementById("mi").style.display="block"
-          document.getElementById("ing").style.display="block"
+          document.getElementById("ing").style.display="none"
         }
           
       },
@@ -146,7 +146,7 @@ export default {
       .then((data) => {
           localStorage.setItem('token', data.jwt)
           localStorage.setItem('user', JSON.stringify(data.user))  
-          this.$router.push('/mostrar')
+          this.$router.push('/')
           
      })
       .catch((err)=> {
@@ -159,7 +159,7 @@ export default {
            document.getElementById("mi").style.display="none"
            localStorage.removeItem('token'),
            localStorage.removeItem('user'),
-           this.$router.push('/mostrar')
+           this.$router.push('/')
         },
 
     }
