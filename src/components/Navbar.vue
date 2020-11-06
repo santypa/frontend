@@ -22,7 +22,7 @@
 
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#"> <h3>Inicio </h3> <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/"> <h3>Inicio </h3> <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <!-- ////////////VER CARACTERISTICAS EMPRESA/////////////// -->
@@ -41,7 +41,7 @@
     </div>
 <!-- ////////////////////////INGRESAR USUARIO O EMPRESA /////////////////////7 -->
 
-    <div class="btn-group m-2" id="ing" style="display: block">   
+     <div class="btn-group m-2" id="ing" style="display: block">   
 
       <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
          Ingresar
@@ -61,9 +61,14 @@
       </div>
          <button type="submit"  >Iniciar Sesion</button>
       </form>
-      
       </div>
+      <!-- /////////////////////////// -->
+    
+      <a class="btn btn-dark m-2"  href="/empresa">Registrarse<span class="sr-only">(current)</span></a>
+      
+
 <!-- //////////////////// BUSCADOR BARRA ////////////// -->
+
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -79,9 +84,7 @@
     
 
 </nav>
-
-    <Carrusel imagen="hola mundo"/>
-
+    <!-- <Carrusel imagen="h"/> -->
 </template>
 
 <script>
@@ -91,13 +94,7 @@ import Carrusel from '@/components/Carrusel.vue'
 
 export default {
     name: "Navbar",
-    props:{
-        nav: String,
-    },
 
-    components:{
-        Carrusel,
-    },
     data(){
         return{
             Empresas: [],
@@ -119,10 +116,10 @@ export default {
         console.log(localStorage.getItem('token'))
         if (localStorage.getItem('token')==null) {
           document.getElementById("ing").style.display="block"
-          document.getElementById("mi").style.display="none"
+          document.getElementById("mi").style.display="block"
         } else {
           document.getElementById("mi").style.display="block"
-          document.getElementById("ing").style.display="none"
+          document.getElementById("ing").style.display="block"
         }
           
       },
