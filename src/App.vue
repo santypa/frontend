@@ -1,6 +1,6 @@
 <template>
   
-    <Navbar nav="asdasd" />
+    <Navbar />
 
   <router-view/>
 </template>

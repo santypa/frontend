@@ -59,6 +59,7 @@
       <div  v-if="error" class="bg-primary" >
          <samp >las credenciales no son coreectas</samp>
       </div>
+
          <button type="submit"  >Iniciar Sesion</button>
       </form>
       </div>
@@ -102,6 +103,7 @@ export default {
             usuario:[],
             email: '',
             password: '',
+            
             error: false,
         };
     },

@@ -77,6 +77,7 @@ export default {
         error: false,
       }
     },
+    
     methods: {
 
     cambiarArchivo(e){
