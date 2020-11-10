@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue';
 import empresa from '@/views/empresa.vue'
 import productos from '@/components/misproductos.vue'
+import agregar from '@/components/agregar.vue'
 
 const routes = [
  
@@ -10,6 +11,15 @@ const routes = [
      name: 'Home',
      component: Home
     },
+
+    {
+      path:'/agregar',
+      name: 'agregar',
+      component: agregar,
+      meta:{
+        requireAuth: true 
+      } 
+   },
 
     {
       path:'/productos',

@@ -59,7 +59,7 @@ export default {
     methods: {
 
       eliminar(id){
-            axios.delete("http://localhost:1337/imagenes/"+ id, {
+            axios.delete("http://localhost:1337/imagenes/ver"+ id, {
                 headers: {
                     Authorization: "Bearer "  + localStorage.getItem('token') 
                 } 

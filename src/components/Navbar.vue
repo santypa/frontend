@@ -65,8 +65,9 @@
       </div>
       <!-- /////////////////////////// -->
     
-      <a class="btn btn-dark m-2"  href="/empresa">Registrarse<span class="sr-only">(current)</span></a>
+      <a class="btn btn-dark m-2"  id="re" href="/empresa">Registrar Empresa<span class="sr-only">(current)</span></a>
       
+      <a class="btn btn-dark m-2" id="ru" href="/empresa">Registrar Usuario<span class="sr-only">(current)</span></a>
 
 <!-- //////////////////// BUSCADOR BARRA ////////////// -->
 
@@ -103,7 +104,7 @@ export default {
             usuario:[],
             email: '',
             password: '',
-            
+
             error: false,
         };
     },
@@ -119,9 +120,13 @@ export default {
         if (localStorage.getItem('token')==null) {
           document.getElementById("ing").style.display="block"
           document.getElementById("mi").style.display="none"
+          document.getElementById("re").style.display="none"
+          document.getElementById("ru").style.display="Block"
         } else {
           document.getElementById("mi").style.display="block"
           document.getElementById("ing").style.display="none"
+            document.getElementById("re").style.display="Block"
+          document.getElementById("ru").style.display="none"
         }
           
       },
