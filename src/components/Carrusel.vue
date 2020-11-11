@@ -48,9 +48,5 @@ export default {
   height: 500px;
   align-content: center;
   border: 10px;
-<<<<<<< HEAD
 } */
 </style>
-=======
-
->>>>>>> d3b04eb3fc3ec788b4632891dbfd5c3bd4e6aee6

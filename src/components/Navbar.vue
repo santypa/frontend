@@ -39,35 +39,95 @@
             <a class="dropdown-item" href="#" @click="salirempresa()">cerrar secion</a>
       </div>
     </div>
+    <!-- ///////////////////// INGRESAR CON EL USUARIO /////////////////////// -->
+<a class="btn btn-dark m-2" id="ing" style="display: block" data-toggle="modal" data-target="#login" >Ingresar<span class="sr-only">(current)</span></a> 
+
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ingresa con usuario Registardo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <form @submit.prevent="login">
+            <div class="col">
+            
+             <label for="email">Email </label>
+             <input type="email" v-model="email"  class="form-control" id="email" placeholder="ejemplo@example.com">
+       
+             <label for="password">Password</label>
+             <input type="password" v-model="password" class="form-control" id="password" placeholder="Password">
+           
+            </div> 
+
+          <div  v-if="error" class="spamf  p-2 m-2 col-lg-6 aling-center" >
+            <samp class="">las credenciales no son errones, verifique los datos...</samp>
+          </div> 
+          <div  v-if="guardo" class="spamv p-2 m-2 col-lg-6 aling-center" >
+            <samp class="">Ingreso Correcto</samp>
+          </div> 
+          
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+            </div>
+         </form>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- ////////////////////////INGRESAR USUARIO O EMPRESA /////////////////////7 -->
 
-     <div class="btn-group m-2" id="ing" style="display: block">   
-
-      <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         Ingresar
-      </button>
-
-        <form class="dropdown-menu p-3 mt-2 " style="width: 100%;" @submit.prevent="login" >
-      <div class="form-group">
-          <label for="email">Email </label>
-           <input type="email" v-model="email"  class="form-control" id="email" placeholder="email@example.com">
-       </div>
-      <div class="form-group">
-         <label for="password">Password</label>
-         <input type="password" v-model="password" class="form-control" id="password" placeholder="Password">
-       </div>
-      <div  v-if="error" class="bg-primary" >
-         <samp >las credenciales no son coreectas</samp>
-      </div>
-
-         <button type="submit"  >Iniciar Sesion</button>
-      </form>
-      </div>
-      <!-- /////////////////////////// -->
-    
       <a class="btn btn-dark m-2"  id="re" href="/empresa">Registrar Empresa<span class="sr-only">(current)</span></a>
-      
-      <a class="btn btn-dark m-2" id="ru" href="/empresa">Registrar Usuario<span class="sr-only">(current)</span></a>
+      <!--/////////////////// Button trigger modal /////////////////////-->
+
+      <a class="btn btn-dark m-2" id="ru" data-toggle="modal" data-target="#registra" >Registrar Usuario<span class="sr-only">(current)</span></a> 
+
+<div class="modal fade" id="registra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Registrarte Aqui</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <form @submit.prevent="guardar">
+            <div class="col">
+            
+              <label for="nombre">Nombre</label> <br>
+              <input type="text" class="form-control" placeholder="Nombre completo..." v-model="nombre" id="nombre"> 
+         
+              <label for="correo">Email</label> <br>
+              <input type="text" class="form-control" placeholder="Correo..." v-model="correo" id="correo">
+          
+              <label for="clave">Password</label> <br>
+              <input type="password" class="form-control" placeholder="Contraseña..." v-model="clave" id="clave"> 
+           </div> 
+  
+          <div  v-if="error" class="spamf p-2 m-2 col-lg-6 aling-center" >
+            <samp class="">las credenciales no son errones, verifique los datos...</samp>
+          </div> 
+          <div  v-if="guardo" class="spamv p-2 m-2 col-lg-6 aling-center" >
+            <samp class="">Ingreso Correcto</samp>
+          </div> 
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </div>
+         </form>
+      </div>
+    </div>
+  </div>
+</div>
+          
 
 <!-- //////////////////// BUSCADOR BARRA ////////////// -->
 
@@ -86,13 +146,13 @@
     
 
 </nav>
-    <!-- <Carrusel imagen="h"/> -->
+
 </template>
 
 <script>
 
-
 import Carrusel from '@/components/Carrusel.vue'
+import axios from 'axios'; 
 
 export default {
     name: "Navbar",
@@ -106,6 +166,11 @@ export default {
             password: '',
 
             error: false,
+            guardo: false,
+
+            nombre:"",
+            correo:"",
+            clave:""
         };
     },
      mounted() {
@@ -125,14 +190,25 @@ export default {
         } else {
           document.getElementById("mi").style.display="block"
           document.getElementById("ing").style.display="none"
-            document.getElementById("re").style.display="Block"
+          document.getElementById("re").style.display="Block"
           document.getElementById("ru").style.display="none"
         }
           
       },
+      guardar(){
+        axios.post("http://localhost:1337/auth/local/register",{
+             "username": this.nombre,
+	           "email": this.correo,
+	           "password": this.clave
+        }
+        ).then((response) => {  
+                this.$router.push('/')
+        }); 
+      },
 
       login(){
       this.error=false
+      this.guardo=false
       fetch('http://localhost:1337/auth/local',{
         method: "POST",
         headers:{
@@ -148,10 +224,13 @@ export default {
           }
           document.getElementById("mi").style.display="block"
           document.getElementById("ing").style.display="none"
+          document.getElementById("re").style.display="Block"
+          document.getElementById("ru").style.display="none"
           return response.json()
       })
       .then((data) => {
           localStorage.setItem('token', data.jwt)
+          this.guardo=true
           localStorage.setItem('user', JSON.stringify(data.user))  
           this.$router.push('/')
           
@@ -163,7 +242,9 @@ export default {
 
         salirempresa(){
           document.getElementById("ing").style.display="block"
-           document.getElementById("mi").style.display="none"
+          document.getElementById("mi").style.display="none"
+          document.getElementById("re").style.display="none"
+          document.getElementById("ru").style.display="Block"
            localStorage.removeItem('token'),
            localStorage.removeItem('user'),
            this.$router.push('/')
@@ -175,5 +256,14 @@ export default {
 </script>
 
 <style >
-
+  .spamv{
+    background: rgb(74, 191, 226);
+    border-radius: 20px;
+    position: relative;
+  }
+  .spamf{
+    background: rgb(226, 74, 119);
+    border-radius: 20px;
+    position: relative;
+  }
 </style>

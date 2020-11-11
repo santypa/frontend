@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/views/Home.vue';
 import empresa from '@/views/empresa.vue'
+import login from '@/views/login.vue'
 import productos from '@/components/misproductos.vue'
 import agregar from '@/components/agregar.vue'
 
@@ -28,6 +29,12 @@ const routes = [
      meta:{
       requireAuth: true 
     } 
+    },
+
+    {
+      path:'/login',
+     name: 'login',
+     component: login,
     },
 
     {
