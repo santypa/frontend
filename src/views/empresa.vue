@@ -1,5 +1,5 @@
 <template>
-<container class="container">
+<div class="container">
   <div class="con text-center m-4 p-4">
 
     <h1>Registro de la empresa</h1>
@@ -37,9 +37,9 @@
       <div class="col-12 col-md-6 text-center justify-content-center mx-auto" style="height: 500px">
         <p><b>Previsualizacion:</b></p>
         <br />
-        <div v-if="image === ''"></div>
+        <div v-if="imagen === ''"></div>
         <div>
-          <img :src="image" alt="" height="400px" width="400px" />
+          <img :src="imagen" alt="" height="400px" width="400px" />
         </div>
       </div>
 
@@ -51,7 +51,7 @@
       <button type="submit" class="row bg-dark text-white m-4">Registrar</button>
     </form>
   </div>
-</container>
+</div>
 </template>
 
 <script>
@@ -68,25 +68,24 @@ export default {
       telefono: '',
       direccion: '',
       empresa: '',
-      image: '',
-      imagen: null,
-
+      imagen: '',
       error: false,
     }
   },
 
   methods: {
 
-    /* cambiarArchivo(e) {
-      this.imagen = e.target.files[0]
-      console.log(e.target.files[0])
-    }, */
-    /*    prevista(e) {
-         this.image = URL.createObjectURL(e.target.files[0]);
-         this.verimagen = e.target.files[0];
+    /* @change="prevista"    cambiarArchivo(e) {
+         this.imagen = e.target.files[0]
+         console.log(e.target.files[0])
        }, */
+    /*   prevista(e) {
+        this.imagen = URL.createObjectURL(e.target.files[0]);
+        this.verimagen = e.target.files[0];
+      }, */
 
     guardar() {
+      this.error = false;
       const tokens = localStorage.getItem("token");
       let form = new FormData()
       form.append("files.imagen", this.verimagen);
@@ -95,8 +94,10 @@ export default {
           correo: this.correo,
           clave: this.clave,
           telefono: this.telefono,
-          direccion: this.direccion
+          direccion: this.direccion,
+
         })),
+        //console.log(this.verimagen);
         /* form.append('files.img', this.imagen) */
 
         axios.post("http://localhost:1337/empresas", form, {
@@ -107,9 +108,10 @@ export default {
           },
 
         }).then((response) => {
-          console.log('se creo un usuario publico')
+          console.log('se creo la empresa')
         }).catch((err) => {
-          console.log("FALLO")
+          console.log("FALLO");
+          this.error = true;
         });
 
       /*  axios.post("http://localhost:1337/auth/local/register", {
