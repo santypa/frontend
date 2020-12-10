@@ -32,7 +32,7 @@
         Mi Empresa
       </button>
       <div class="dropdown-menu">
-<<<<<<< HEAD
+
            
             <a class="dropdown-item" href="/productos">Ver Mis productos</a>
             <a class="dropdown-item" href="/agregar">Agregar Producto</a>
@@ -40,13 +40,7 @@
             
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" @click="salirempresa()">cerrar secion</a>
-=======
 
-        <a class="dropdown-item" href="/productos">Ver Mis productos</a>
-        <a class="dropdown-item" href="/agregar">Agregar Producto</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="#" @click="salirempresa()">cerrar secion</a>
->>>>>>> 9e79b1bf081bfd1c9692f81fa00727dbaadfaae6
       </div>
     </div>
     <!-- ///////////////////// INGRESAR CON EL USUARIO /////////////////////// -->
@@ -255,7 +249,6 @@ export default {
 }
 </script>
 
-<<<<<<< HEAD
 <style >
   .spamv{
     background: rgb(74, 191, 226);
@@ -268,18 +261,3 @@ export default {
     position: relative;
   }
 </style>
-=======
-<style>
-.spamv {
-  background: rgb(74, 191, 226);
-  border-radius: 20px;
-  position: relative;
-}
-
-.spamf {
-  background: rgb(226, 74, 119);
-  border-radius: 20px;
-  position: relative;
-}
-</style>
->>>>>>> 9e79b1bf081bfd1c9692f81fa00727dbaadfaae6
