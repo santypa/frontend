@@ -14,7 +14,6 @@
            
            <h4>caracteristicas del producto</h4>
            <input class="ten" type="text" placeholder="Aregar una descripcion del producto..." v-model="descripcion" id="descripcion"><br>
-
           <input type="button" @click="guardar" class="bt m-4 p-1 border-dark" value="Guardar Imagen"> <br>
 
 
@@ -54,8 +53,8 @@ export default {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
       }).then((response) => {
-               /*  console.log(this.imagen) */
-                /* console.log('se agrago una imagen') */
+                /* console.log(this.imagen) 
+                console.log('se agrago una imagen')  */
                 this.push('/productos') 
              });  
   },

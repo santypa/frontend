@@ -8,46 +8,31 @@
       <div class="row">
         <div class="col col-lg-4 col-xl-3">
           <label for="nombre">Nombre de la empresa</label> <br>
-          <input type="text" placeholder="Nombre completo..." v-model="nombre" name="nombre">
+          <input type="text" placeholder="Nombre completo..." v-model="nombre" name="nombre" required>
         </div>
         <div class="col col-lg-4 col-xl-3">
           <label for="correo">Email</label> <br>
-          <input type="text" placeholder="Correo..." v-model="correo" name="correo">
+          <input type="text" placeholder="Correo..." v-model="correo" name="correo" required>
         </div>
         <div class="col col-lg-4 col-xl-3">
           <label for="telefono">Telefono</label> <br>
-          <input type="text" placeholder="celular..." v-model="telefono" name="telefono">
-        </div>
-        <div class="col col-lg-4 col-xl-3">
-          <label for="clave">Password</label> <br>
-          <input type="password" placeholder="Contraseña..." v-model="clave" name="clave">
+          <input type="text" placeholder="celular..." v-model="telefono" name="telefono" required>
         </div>
 
         <div class="col col-lg-4 col-xl-3">
           <label for="direccion">direccion</label> <br>
-          <input type="text" placeholder="Direccion residencia..." v-model="direccion" name="direccion">
+          <input type="text" placeholder="Direccion residencia..." v-model="direccion" name="direccion" required>
         </div>
 
       </div> <br>
-      <div class="d-flex justify-content-center">
-        <div class="b2 row ">
-          <input type="file" ref="file" id="imagen" placeholder="" accept="image/*">
-        </div>
-      </div>
-      <div class="col-12 col-md-6 text-center justify-content-center mx-auto" style="height: 500px">
-        <p><b>Previsualizacion:</b></p>
-        <br />
-        <div v-if="image === ''"></div>
-        <div>
-          <img :src="image" alt="" height="400px" width="400px" />
-        </div>
-      </div>
 
-      <div>
-        <div v-if="error" class="nota p-2 m-2 col-lg-6 aling-center">
-          <samp class="">las credenciales no son coreectas</samp>
-        </div>
-      </div>
+          <label for=""><p class="p1">selecciona una imagen</p> </label> <br>
+          <div class="d-flex justify-content-center">
+                <div class="b2 row ">
+                  <input type="file" ref="file" id="imagen" @change="cambiarArchivo" placeholder="" accept="image/jpeg, image/png, image/jpg, image/gif" required >
+                </div>
+          </div>
+
       <button type="submit" class="row bg-dark text-white m-4">Registrar</button>
     </form>
   </div>
@@ -63,7 +48,6 @@ export default {
     return {
       nombre: '',
       correo: '',
-      clave: '',
       verimagen: '',
       telefono: '',
       direccion: '',
@@ -76,28 +60,27 @@ export default {
   },
 
   methods: {
+    
+      cambiarArchivo(e){
+        this.imagen = e.target.files[0]
+        console.log(this.imagen)
+    },
 
-    /* cambiarArchivo(e) {
-      this.imagen = e.target.files[0]
-      console.log(e.target.files[0])
-    }, */
-    /*    prevista(e) {
-         this.image = URL.createObjectURL(e.target.files[0]);
-         this.verimagen = e.target.files[0];
-       }, */
-
+    
     guardar() {
       const tokens = localStorage.getItem("token");
+
       let form = new FormData()
-      form.append("files.imagen", this.verimagen);
+      
       form.append('data', JSON.stringify({
           nombre: this.nombre,
           correo: this.correo,
-          clave: this.clave,
           telefono: this.telefono,
           direccion: this.direccion
-        })),
-        /* form.append('files.img', this.imagen) */
+        },)),
+/* 
+      form.append("files.imagen", this.verimagen); */
+      form.append("files.img" , this.imagen)
 
         axios.post("http://localhost:1337/empresas", form, {
           headers: {
@@ -108,17 +91,13 @@ export default {
 
         }).then((response) => {
           console.log('se creo un usuario publico')
+
+          this.$router.push("/");
         }).catch((err) => {
+          this.$router.push("/empresa");
           console.log("FALLO")
         });
 
-      /*  axios.post("http://localhost:1337/auth/local/register", {
-         "username": this.nombre,
-         "email": this.correo,
-         "password": this.clave
-       }).then((response) => {
-         this.$router.push('/')
-       }); */
     },
 
   },

@@ -35,6 +35,8 @@
            
             <a class="dropdown-item" href="/productos">Ver Mis productos</a>
             <a class="dropdown-item" href="/agregar">Agregar Producto</a>
+
+            
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" @click="salirempresa()">cerrar secion</a>
       </div>
@@ -262,7 +264,7 @@ export default {
     position: relative;
   }
   .spamf{
-    background: rgb(226, 74, 119);
+    background: rgb(74, 191, 226);
     border-radius: 20px;
     position: relative;
   }
