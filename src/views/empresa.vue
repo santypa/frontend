@@ -1,37 +1,48 @@
 <template>
 <container class="container">
+
+
+    <div class="alert alert-danger" id="alert" style="display:none; "   role="alert" data-alerts="alerts" data-fade="2000">
+         EL USUARIO YA TIENE REGISTRADA UNA EMPRESA
+      </div>
+       
+
+
+
   <div class="con text-center m-4 p-4">
 
     <h1>Registro de la empresa</h1>
 
     <form @submit.prevent="guardar" enctype="multipart/form-data">
-      <div class="row">
-        <div class="col col-lg-4 col-xl-3">
-          <label for="nombre">Nombre de la empresa</label> <br>
-          <input type="text" placeholder="Nombre completo..." v-model="nombre" name="nombre" required>
-        </div>
-        <div class="col col-lg-4 col-xl-3">
-          <label for="correo">Email</label> <br>
-          <input type="text" placeholder="Correo..." v-model="correo" name="correo" required>
-        </div>
-        <div class="col col-lg-4 col-xl-3">
-          <label for="telefono">Telefono</label> <br>
-          <input type="text" placeholder="celular..." v-model="telefono" name="telefono" required>
-        </div>
-
-        <div class="col col-lg-4 col-xl-3">
-          <label for="direccion">direccion</label> <br>
-          <input type="text" placeholder="Direccion residencia..." v-model="direccion" name="direccion" required>
-        </div>
-
-      </div> <br>
-
-          <label for=""><p class="p1">selecciona una imagen</p> </label> <br>
+     <label for=""><p class="p1">selecciona una imagen</p> </label> <br>
           <div class="d-flex justify-content-center">
                 <div class="b2 row ">
                   <input type="file" ref="file" id="imagen" @change="cambiarArchivo" placeholder="" accept="image/jpeg, image/png, image/jpg, image/gif" required >
                 </div>
           </div>
+      <div class="row">
+        <div class="col col-lg-4 col-xl-3">
+          <label for="nombre">Nombre de la empresa</label> <br>
+          <input id="a"  type="text" placeholder="Nombre completo..." v-model="nombre" name="nombre" required>
+        </div>
+        <div class="col col-lg-4 col-xl-3">
+          <label for="correo">Email</label> <br>
+          <input id="b" type="text" placeholder="Correo..." v-model="correo" name="correo" required>
+        </div>
+        <div class="col col-lg-4 col-xl-3">
+          <label for="telefono">Telefono</label> <br>
+          <input id="c" type="text" placeholder="celular..." v-model="telefono" name="telefono" required>
+        </div>
+
+        <div class="col col-lg-4 col-xl-3">
+          <label for="direccion">direccion</label> <br>
+          <input id="d" type="text" placeholder="Direccion residencia..." v-model="direccion" name="direccion" required>
+        </div>
+
+      </div> <br>
+
+         
+      
 
       <button type="submit" class="row bg-dark text-white m-4">Registrar</button>
     </form>
@@ -54,20 +65,42 @@ export default {
       empresa: '',
       image: '',
       imagen: null,
-
+      user:'',
       error: false,
+      use:[],
+      empresas:'',
+      nam:'',
+      empre:0,
     }
   },
 
   methods: {
+      vacio(){
+        document.getElementById("alert").style.display="none"
+      },
     
       cambiarArchivo(e){
         this.imagen = e.target.files[0]
-        console.log(this.imagen)
+        /* console.log(this.imagen) */
+      
+      const usi =  localStorage.getItem('user');
+
+
+       /*  console.log(usi) */
+         var divisio = usi.split(",",2)
+        var nombrepersona = divisio[1]
+        var nom = nombrepersona.split(":")
+         this.nam = nom[1].replace(/['"]+/g, '')
+       /*  console.log(this.nam) */
+        axios.get("http://localhost:1337/categorias")
+        .then((res) => {
+            this.empresas = res.data;
+        });
     },
 
     
     guardar() {
+
       const tokens = localStorage.getItem("token");
 
       let form = new FormData()
@@ -76,17 +109,37 @@ export default {
           nombre: this.nombre,
           correo: this.correo,
           telefono: this.telefono,
-          direccion: this.direccion
+          direccion: this.direccion,
+          user: this.user
         },)),
-/* 
-      form.append("files.imagen", this.verimagen); */
+  
       form.append("files.img" , this.imagen)
 
-        axios.post("http://localhost:1337/empresas", form, {
+       axios.get("http://localhost:1337/empresas")
+        .then((res) => {
+            this.empresas = res.data;
+            for(var a=0; a<(res.data).length;a++){
+
+                
+                console.log(res.data[a].user["username"])
+                console.log(this.nam)
+                if(this.nam = res.data[a].user["username"])
+                {
+                    this.empre = 2,
+                    a=(res.data).length
+                    
+                }else{
+                    this.empre=3
+                }
+            }
+        });
+
+          if (this.empre == 3 ){
+
+                 axios.post("http://localhost:1337/empresas", form, {
           headers: {
             Authorization: "Bearer " + tokens,
             "Content-Type": "multipart/form-data",
-
           },
 
         }).then((response) => {
@@ -98,11 +151,34 @@ export default {
           console.log("FALLO")
         });
 
+          }else{
+            console.log(" EL USUARIO YA TIENE UNA EMPRESA")
+            document.getElementById("alert").style.display="block"
+
+            document.getElementById("d").value = "";
+            document.getElementById("c").value = "";
+            document.getElementById("b").value = "";
+            document.getElementById("a").value = "";
+           
+          }
+     
     },
+
 
   },
 
 }
+
+
+
+
+
+
+
+
+
+
+
 </script>
 
 <style>
@@ -147,4 +223,5 @@ input#imagen {
   height: 300px;
   opacity: 0;
 }
+
 </style>

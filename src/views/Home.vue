@@ -8,8 +8,8 @@
        <div class="row">
        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3"  v-for="empresa in empresas" :key="empresa.id"> 
       
-           <div href="producto.vue" class="btn card m-1">  
-            <img :src="'http://localhost:1337'+empresa.img.url" alt="" id="image" class="card-img-top" >
+           <div  class="btn card m-1">  
+            <img :src="'http://localhost:1337'+empresa.img.url" alt="" @click="producto()"  id="image" class="card-img-top" >
               <div class="card-body">  
                <p> {{ empresa.nombre }} </p>
                <p> Nombre: {{ empresa.nempresa }} </p>
