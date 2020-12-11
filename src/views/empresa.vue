@@ -39,10 +39,23 @@
           <input id="d" type="text" placeholder="Direccion residencia..." v-model="direccion" name="direccion" required>
         </div>
 
+       
+
       </div> <br>
 
-         
-      
+      <div class="row" >
+
+       <div class="row col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3" style="border-radius: 10%" v-for="forma in formato" :key="forma.id"> 
+           <div  class="card m-1">  
+             <p> formato  </p>
+              <div class="card-body">  
+                <img :src="'http://localhost:1337' + forma.formato.url"  id="image" class="card-img-top" >
+              </div>
+          </div>
+
+        </div>
+      </div>
+
 
       <button type="submit" class="row bg-dark text-white m-4">Registrar</button>
     </form>
@@ -71,6 +84,9 @@ export default {
       empresas:'',
       nam:'',
       empre:0,
+
+      formato:[],
+      
     }
   },
 
@@ -86,16 +102,19 @@ export default {
       const usi =  localStorage.getItem('user');
 
 
-       /*  console.log(usi) */
+      
          var divisio = usi.split(",",2)
         var nombrepersona = divisio[1]
         var nom = nombrepersona.split(":")
          this.nam = nom[1].replace(/['"]+/g, '')
-       /*  console.log(this.nam) */
-        axios.get("http://localhost:1337/categorias")
+      
+
+        axios.get("http://localhost:1337/formatoes")
         .then((res) => {
-            this.empresas = res.data;
+            this.formato = res.data;
+            console.log(this.formato)
         });
+
     },
 
     

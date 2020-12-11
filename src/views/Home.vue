@@ -12,7 +12,7 @@
             <img :src="'http://localhost:1337'+empresa.img.url" alt="" @click="producto()"  id="image" class="card-img-top" >
               <div class="card-body">  
                <p> {{ empresa.nombre }} </p>
-               <p> Nombre: {{ empresa.nempresa }} </p>
+               <!-- <p> Nombre: {{ empresa.img.url}} </p> -->
                </div>
             </div>
        </div>

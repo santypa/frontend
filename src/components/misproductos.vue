@@ -4,13 +4,15 @@
     <div class="c2 container" id="im"  style="display: block">
        <div class="row">
 
-       <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3"  v-for="imagenes in imagenes" :key="imagenes.id"> 
+       <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3"  v-for="image in imagenes" :key="image.id"> 
       
            <div class="card m-1">  
-            <img :src="'http://localhost:1337'+imagenes.url.url" alt="" id="image" class="card-img-top" >
+            <img :src="'http://localhost:1337'+image.url.url" alt="" id="image" class="card-img-top" >
               <div class="card-body">  
                 <p> {{ user.username }} </p>
-                <p> {{ imagenes.categ}} </p>
+                <p> {{ image.descripcion }} </p>
+                
+                <!-- <p> {{ image.categ}} </p> -->
                 <!-- {{ usuario = imagenes.user}} -->
                
                <input type="submit" class="bg-dark text-white" @click="eliminar(imagenes.id)"  value="Eliminar">
