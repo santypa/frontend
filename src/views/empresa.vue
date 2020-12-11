@@ -47,9 +47,10 @@
 
        <div class="row col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3" style="border-radius: 10%" v-for="forma in formato" :key="forma.id"> 
            <div  class="card m-1">  
-             <p> formato  </p>
+             <p> formato {{forma.id}} </p>
+
               <div class="card-body">  
-                <img :src="'http://localhost:1337' + forma.formato.url"  id="image" class="card-img-top" >
+                <img :src="'http://localhost:1337' + forma.formato.url"  id="image" @click="formatoes(forma.id)" class="card-img-top" >
               </div>
           </div>
 
@@ -86,11 +87,26 @@ export default {
       empre:0,
 
       formato:[],
-      
+      form:0,
+     
     }
   },
 
   methods: {
+      formatoes(fort){
+        this.form=0;
+
+        if(fort==1){
+            this.form = 1
+            console.log(this.form)
+        }
+        else{
+            this.form = 2
+            console.log(this.form)
+        }
+          
+      },
+
       vacio(){
         document.getElementById("alert").style.display="none"
       },
@@ -129,7 +145,9 @@ export default {
           correo: this.correo,
           telefono: this.telefono,
           direccion: this.direccion,
-          user: this.user
+          user: this.user,
+          formato : this.form
+
         },)),
   
       form.append("files.img" , this.imagen)
