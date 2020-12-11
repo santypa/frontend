@@ -17,6 +17,8 @@ var _misproductos = _interopRequireDefault(require("@/components/misproductos.vu
 
 var _agregar = _interopRequireDefault(require("@/components/agregar.vue"));
 
+var _productos = _interopRequireDefault(require("@/views/productos.vue"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var routes = [{
@@ -45,6 +47,10 @@ var routes = [{
   path: '/empresa',
   name: 'empresa',
   component: _empresa["default"]
+}, {
+  path: '/producto',
+  name: 'producto',
+  component: _productos["default"]
 }];
 var router = (0, _vueRouter.createRouter)({
   history: (0, _vueRouter.createWebHistory)(process.env.BASE_URL),

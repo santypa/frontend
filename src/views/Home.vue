@@ -45,6 +45,11 @@ export default {
         Carrusel,
     },
 
+    methods: {
+        producto(){
+            this.$router.push("/producto");
+        },
+    },
 
     mounted() {
 
@@ -53,8 +58,10 @@ export default {
             this.empresas = res.data;
         });
          
+         
     },
-    
+
+   
 
 }
 </script>

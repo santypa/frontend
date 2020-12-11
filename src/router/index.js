@@ -4,6 +4,7 @@ import empresa from '@/views/empresa.vue'
 import login from '@/views/login.vue'
 import productos from '@/components/misproductos.vue'
 import agregar from '@/components/agregar.vue'
+import product from '@/views/productos.vue'
 
 const routes = [
  
@@ -42,6 +43,12 @@ const routes = [
      name: 'empresa',
      component: empresa
     },
+    {
+      path:'/producto',
+     name: 'producto',
+     component: product
+    },
+    
 
   
  

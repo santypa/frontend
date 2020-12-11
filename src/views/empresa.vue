@@ -6,9 +6,6 @@
          EL USUARIO YA TIENE REGISTRADA UNA EMPRESA
       </div>
        
-
-
-
   <div class="con text-center m-4 p-4">
 
     <h1>Registro de la empresa</h1>
