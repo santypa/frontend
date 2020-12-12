@@ -85,14 +85,19 @@ export default {
 
       formato:[],
       form:0,
+      al:0,
      
     }
   },
+  mounted() {
+
+     document.getElementById("alert").style.display="none"
+  },
 
   methods: {
+    
       formatoes(fort){
         this.form=0;
-
         if(fort==1){
             this.form = 1
             console.log(this.form)
@@ -101,40 +106,62 @@ export default {
             this.form = 2
             console.log(this.form)
         }
-          
-      },
-
-      vacio(){
-        document.getElementById("alert").style.display="none"
       },
     
       cambiarArchivo(e){
+        
         this.imagen = e.target.files[0]
-        /* console.log(this.imagen) */
-      
-      const usi =  localStorage.getItem('user');
-
-
-      
-         var divisio = usi.split(",",2)
+        const usi =  localStorage.getItem('user');
+        var divisio = usi.split(",",2)
         var nombrepersona = divisio[1]
         var nom = nombrepersona.split(":")
-         this.nam = nom[1].replace(/['"]+/g, '')
-      
+        this.nam = nom[1].replace(/['"]+/g, '')
 
         axios.get("http://localhost:1337/formatoes")
         .then((res) => {
             this.formato = res.data;
-            console.log(this.formato)
+            /* console.log(this.formato) */
         });
+
+ /* ////////////////////VERIFICAR SI EL USUARIO TIENE EMPRESA ///////////////////// */
+      
+     axios.get("http://localhost:1337/empresas")
+        .then((res) => {
+            this.empresas = res.data;
+            this.al=0
+            /* console.log(res.data) */
+            
+            if((res.data).length==0){
+                this.empre = 3
+                console.log("el numero es "+ this.empre)
+            }else{
+              
+              for(var t=0; t<=(res.data).length;t++){
+                /* console.log(res.data[t].user["username"])
+                console.log(this.nam) */
+                if(this.nam == res.data[t].user["username"])
+                {
+                    this.empre = 2,
+                    t = (res.data).length
+                    console.log("holaaa"+this.empre)
+                }else{
+                    this.empre = 3
+                    console.log("holapp"+ this.empre)
+                }
+              }
+            }
+            
+        });
+      /* ///////////////////////////////////////// */
 
     },
 
     
     guardar() {
 
-      const tokens = localStorage.getItem("token");
+      console.log(this.empre)
 
+      const tokens = localStorage.getItem("token")
       let form = new FormData()
       
       form.append('data', JSON.stringify({
@@ -144,33 +171,13 @@ export default {
           direccion: this.direccion,
           user: this.user,
           formato : this.form
-
         },)),
   
       form.append("files.img" , this.imagen)
 
-       axios.get("http://localhost:1337/empresas")
-        .then((res) => {
-            this.empresas = res.data;
-            for(var a=0; a<(res.data).length;a++){
+        if (this.empre == 3){
 
-                
-                console.log(res.data[a].user["username"])
-                console.log(this.nam)
-                if(this.nam = res.data[a].user["username"])
-                {
-                    this.empre = 2,
-                    a=(res.data).length
-                    
-                }else{
-                    this.empre=3
-                }
-            }
-        });
-
-          if (this.empre == 3 ){
-
-                 axios.post("http://localhost:1337/empresas", form, {
+          axios.post("http://localhost:1337/empresas", form, {
           headers: {
             Authorization: "Bearer " + tokens,
             "Content-Type": "multipart/form-data",
@@ -178,17 +185,19 @@ export default {
 
         }).then((response) => {
           console.log('se creo un usuario publico')
-
           this.$router.push("/");
+
         }).catch((err) => {
+
           this.$router.push("/empresa");
           console.log("FALLO")
         });
-
+        
           }else{
             console.log(" EL USUARIO YA TIENE UNA EMPRESA")
             document.getElementById("alert").style.display="block"
-
+            
+            document.getElementById("image").value = "";
             document.getElementById("d").value = "";
             document.getElementById("c").value = "";
             document.getElementById("b").value = "";

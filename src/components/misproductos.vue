@@ -9,13 +9,10 @@
            <div class="card m-1">  
             <img :src="'http://localhost:1337'+image.url.url" alt="" id="image" class="card-img-top" >
               <div class="card-body">  
-                <p> {{ user.username }} </p>
-                <p> {{ image.descripcion }} </p>
-                
-                <!-- <p> {{ image.categ}} </p> -->
-                <!-- {{ usuario = imagenes.user}} -->
-               
-               <input type="submit" class="bg-dark text-white" @click="eliminar(imagenes.id)"  value="Eliminar">
+                <p> Usuario: {{ user.username }} </p>
+                <p> Descripcion: <br> {{ image.descripcion }} </p>
+              
+               <input type="submit" class="bg-dark text-white" @click="eliminar(image.id)"  value="Eliminar">
 
                </div>
             </div> 
@@ -27,10 +24,7 @@
 </template>
 <script>
 import axios from 'axios'; 
-
 export default {
-
-
     name: "Productos",
     
     data(){
@@ -38,13 +32,10 @@ export default {
             imagenes: [],
         }
     },
-
     
     mounted() {
-
     this.user = JSON.parse(localStorage.getItem('user'))
     const token = localStorage.getItem('token')
-
     fetch('http://localhost:1337/imagenes/ver',{
       headers: {
         'Authorization': 'Bearer ' + token,
@@ -59,20 +50,20 @@ export default {
          
     },
     methods: {
-
       eliminar(id){
-            axios.delete("http://localhost:1337/imagenes/ver"+ id, {
+
+            axios.delete("http://localhost:1337/imagenes/"+ id, {
                 headers: {
                     Authorization: "Bearer "  + localStorage.getItem('token') 
                 } 
             }),then((response)=>{
                 this.imagenes =  response.data
-                this.push('/productos') 
+                console.log("se elimino correctamente")
+                this.$router.push("/productos");
                
             });
         }
     }
-
     
     
 }
