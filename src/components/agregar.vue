@@ -148,7 +148,7 @@ export default {
 
 }
 .ten{
-    background: white;
+    background: rgb(117, 45, 45);
     width: 100%;
     height: 30%;
 }
