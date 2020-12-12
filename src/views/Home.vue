@@ -6,9 +6,9 @@
 
     <div class="c2 container" id="im"  style="display: block">
        <div class="row">
-       <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3"  v-for="empresa in empresas" :key="empresa.id"> 
+       <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 "  v-for="empresa in empresas" :key="empresa.id"> 
       
-           <div  class="btn card m-1">  
+           <div  class="btn card m-1 tamaño_img">  
             <img :src="'http://localhost:1337'+empresa.img.url" alt="" @click="producto(empresa.id)"  id="image" class="card-img-top" >
               <div class="card-body">  
                <p> {{ empresa.nombre }} </p>
@@ -21,7 +21,7 @@
     </div>
 
   </div>
-    
+  
 </template>
 
 

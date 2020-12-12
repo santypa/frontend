@@ -83,4 +83,9 @@ export default {
     background-color: rgb(248, 70, 70);
     font-size: small;
   }
+  .tamaño_img{
+    height: 90%;
+    width: 80%;
+    border: 1px solid rgb(32, 32, 34);
+  }
 </style>
