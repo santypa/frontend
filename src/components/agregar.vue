@@ -142,12 +142,13 @@ export default {
   display: inline-block;
 } */
 .container{
-  background:red;
+  background:silver;
   border-radius: 2% ;
  /*  float: center; */
 
 }
 .ten{
+
     background: silver;
     width: 100%;
     height: 30%;
