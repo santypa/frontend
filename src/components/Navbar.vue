@@ -31,36 +31,39 @@
       <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Mi Empresa
       </button>
-      <div class="dropdown-menu">
+      <div class="dropdown-menu fondo_ingreg">
 
            
-            <a class="dropdown-item" href="/productos">Ver Mis productos</a>
-            <a class="dropdown-item" href="/agregar">Agregar Producto</a>
+            <a class="dropdown-item letra_blanca" href="/productos">Ver Mis productos</a>
+            <a class="dropdown-item letra_blanca" href="/agregar">Agregar Producto</a>
 
             
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" @click="salirempresa()">cerrar secion</a>
+            <a class="dropdown-item letra_blanca" href="#" @click="salirempresa()">cerrar secion</a>
 
       </div>
     </div>
     <!-- ///////////////////// INGRESAR CON EL USUARIO /////////////////////// -->
-    <a class="btn btn-dark m-2" id="ing" style="display: block" data-toggle="modal" data-target="#login">Ingresar<span class="sr-only">(current)</span></a>
+    <a class="btn btn-dark m-2 boton_ingresar" id="ing" style="display: block" data-toggle="modal" data-target="#login">Ingresar<span class="sr-only">(current)</span></a>
 
-    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ingresa con usuario Registardo</h5>
+    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+      <div class="modal-dialog" >
+        <div class="modal-content " >
+          <div class="modal-header fondo_ingreg" >
+            <div class="d-flex justify-content-center">
+                <img src="https://previews.123rf.com/images/faysalfarhan/faysalfarhan1205/faysalfarhan120500022/13809767-ingresar-el-icono-en-el-bot%C3%B3n-redondo-verde-brillante.jpg" style="width: 60px; height: 60px;">
+           </div>
+             <h5 class="modal-title" id="exampleModalLabel" ></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body fondo_ingreg">
 
             <form @submit.prevent="login">
-              <div class="col">
+              <div class="col letra_blanca">
 
-                <label for="email">Email </label>
+                <label for="email">Email</label>
                 <input type="email" v-model="email" class="form-control" id="email" placeholder="ejemplo@example.com">
 
                 <label for="password">Password</label>
@@ -76,7 +79,7 @@
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary boton_cerrar" data-dismiss="modal">Cerrar</button>
                 <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
               </div>
             </form>
@@ -88,19 +91,19 @@
 
     <a class="btn btn-dark m-2" id="re" href="/empresa">Registrar Empresa<span class="sr-only">(current)</span></a>
     <!--/////////////////// Button trigger modal /////////////////////-->
-
-    <a class="btn btn-dark m-2" id="ru" data-toggle="modal" data-target="#registra">Registrar Usuario<span class="sr-only">(current)</span></a>
+    <a class="btn btn-dark m-2 boton_registrarusuario" id="ru" data-toggle="modal" data-target="#registra">Registrar Usuario<span class="sr-only">(current)</span></a>
 
     <div class="modal fade" id="registra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Registrarte Aqui</h5>
+          <div class="modal-header fondo_ingreg letra_blanca">
+            
+            <h5 class="modal-title" id="exampleModalLabel" >Registrarte Aqui</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body fondo_ingreg letra_blanca">
 
             <form @submit.prevent="guardar">
               <div class="col">
@@ -123,7 +126,7 @@
               </div>
 
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary boton_cerrar" data-dismiss="modal">Cerrar</button>
                 <button type="submit" class="btn btn-primary">Registrar</button>
               </div>
             </form>
@@ -260,4 +263,5 @@ export default {
     border-radius: 20px;
     position: relative;
   }
+  
 </style>
