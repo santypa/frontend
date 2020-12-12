@@ -171,8 +171,10 @@ export default {
           direccion: this.direccion,
           user: this.user,
           formato : this.form
-        },)),
-  
+        })),
+
+        
+
       form.append("files.img" , this.imagen)
 
         if (this.empre == 3){

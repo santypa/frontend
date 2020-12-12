@@ -20,10 +20,10 @@
 
                <div class="r2 col">
                   <h4>Categoria </h4>
-                  <input class=""  type="text" placeholder="categoria del producto..." v-model="catego" id="catego" required><br>
+                  <input class=""  type="text" placeholder="categoria del producto..." v-model="cat" id="cat" required><br>
+              
                   <h4>Caracteristicas </h4>
                   <input class="ten"  type="text" placeholder="Aregar una descripcion del producto..." v-model="descripcion" id="descripcion" required><br>
-                  
                   <input type="button" @click="guardar" class="bt m-4 p-1 border-dark" value="Guardar Imagen"> <br>
               </div>
            
@@ -54,14 +54,17 @@ export default {
     },
 
     mounted() {
-           document.getElementById("alert").style.display="none"
+        
+
+        document.getElementById("alert").style.display="none"
         const usi =  localStorage.getItem('user');
         var divisio = usi.split(",",2)
         var nombrepersona = divisio[1]
         var nom = nombrepersona.split(":")
         this.nam = nom[1].replace(/['"]+/g, '')
 
-         axios.get("http://localhost:1337/empresas")
+
+        axios.get("http://localhost:1337/empresas")
         .then((res) => {
 
             this.empresas = res.data;
@@ -80,6 +83,7 @@ export default {
               }
  
         });
+
     },
 
   methods: {
@@ -92,8 +96,27 @@ export default {
     },
 
 
+
     guardar(){
       const tokens = localStorage.getItem("token")
+
+      axios.post("http://localhost:1337/categorias",
+          {
+            nombre: this.cat,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " +  tokens,
+            },
+          }
+        )
+        .then((response) => {
+
+             console.log("se creo la categoria")
+
+        });
+
+
       let form = new FormData()
       form.append('files.url', this.imagen)
 
@@ -102,7 +125,7 @@ export default {
           "descripcion": this.descripcion,
           "user": this.user,
           "empresa": this.ides,
-          "categoria": this.cat
+          "categorias": this.cat
         }))
       
       if(this.val == 2){
@@ -149,7 +172,7 @@ export default {
 }
 .ten{
 
-    background: silver;
+    background: white;;
     width: 100%;
     height: 30%;
 }
@@ -164,4 +187,6 @@ export default {
 .r2{
   padding: 5%;
 }
+
+
 </style>
