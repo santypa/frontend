@@ -50,6 +50,7 @@ export default {
          
     },
     methods: {
+      
       eliminar(id){
 
             axios.delete("http://localhost:1337/imagenes/"+ id, {
@@ -58,7 +59,7 @@ export default {
                 } 
             }),then((response)=>{
                 this.imagenes =  response.data
-                console.log("se elimino correctamente")
+               /*  console.log("se elimino correctamente") */
                 this.$router.push("/productos");
                
             });

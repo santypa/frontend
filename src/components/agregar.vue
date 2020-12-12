@@ -188,5 +188,12 @@ export default {
   padding: 5%;
 }
 
-
+body {
+  
+background: url(assets/fondos/fondo1.jpg);
+background-position: center center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+}
 </style>
