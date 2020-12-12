@@ -1,6 +1,6 @@
 <template>
   
-    <Carrusel/>
+    <Carrusel  />
 
     <div class="c1 container p-3 mt-3 ">
 
@@ -9,9 +9,10 @@
        <div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3"  v-for="empresa in empresas" :key="empresa.id"> 
       
            <div  class="btn card m-1">  
-            <img :src="'http://localhost:1337'+empresa.img.url" alt="" @click="producto()"  id="image" class="card-img-top" >
+            <img :src="'http://localhost:1337'+empresa.img.url" alt="" @click="producto(empresa.id)"  id="image" class="card-img-top" >
               <div class="card-body">  
                <p> {{ empresa.nombre }} </p>
+               <!-- <p> {{ empresa.id }} </p> -->
                <!-- <p> Nombre: {{ empresa.img.url}} </p> -->
                </div>
             </div>
@@ -20,7 +21,7 @@
     </div>
 
   </div>
-
+    
 </template>
 
 
@@ -36,18 +37,29 @@ export default {
      props:{
         nav: "",
     },
+
     data(){
         return{
             empresas: [],
+            sms:"hola",
+            smsid:'',
+            nombr:'',
+            direccion:'',
         }
     },
     components:{
         Carrusel,
+       
     },
 
     methods: {
-        producto(){
-            this.$router.push("/producto");
+        producto(nombre){
+            this.nombr = nombre
+           /*  console.log(this.nombr) */
+            this.direccion = "/producto/"+nombre,
+            /* console.log(this.direccion) */
+            this.$router.push(this.direccion);
+
         },
     },
 

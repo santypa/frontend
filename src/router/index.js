@@ -44,7 +44,7 @@ const routes = [
      component: empresa
     },
     {
-      path:'/producto',
+      path:'/producto/:emp',
      name: 'producto',
      component: product
     },

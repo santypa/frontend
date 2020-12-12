@@ -48,7 +48,7 @@ var routes = [{
   name: 'empresa',
   component: _empresa["default"]
 }, {
-  path: '/producto',
+  path: '/producto/:emp',
   name: 'producto',
   component: _productos["default"]
 }];
