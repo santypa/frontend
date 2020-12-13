@@ -3,10 +3,14 @@
     <div>
       <b-navbar variant="faded" type="light">
         <b-navbar-brand href="#">
-          <img
-            src="https://placekitten.com/g/30/30"
-            style="border-radius: 40px; height: 40px; width: 40px"
-          />
+          <!-- ///////////////// src="https://placekitten.com/g/30/30" ////////// -->
+          <div v-if="usuarios">
+            <img :src="'http://localhost:1337'+ icon" style="border-radius: 40px; height: 70px; width: 70px"/>
+          </div>
+          <div v-if="!usuarios" >
+            <img src="https://i.pinimg.com/originals/3f/3d/d9/3f3dd9219f7bb1c9617cf4f154b70383.jpg" style="border-radius: 40px; height: 70px; width: 70px"/>
+          </div>
+          
         </b-navbar-brand>
       </b-navbar>
     </div>
@@ -54,6 +58,10 @@
           <a class="dropdown-item letra_blanca" href="/agregar"
             >Agregar Producto</a
           >
+           <a class="dropdown-item letra_blanca" href="/categoria"
+            >Mis Categorias</a
+          >
+        
 
           <div class="dropdown-divider"></div>
           <a class="dropdown-item letra_blanca" href="#" @click="salirempresa()"
@@ -125,6 +133,7 @@
                     datos...</samp
                   >
                 </div>
+
                 <div v-if="guardo" class="spamv p-2 m-2 col-lg-6 aling-center">
                   <samp class="">Ingreso Correcto</samp>
                 </div>
@@ -134,6 +143,7 @@
                     type="button"
                     class="btn btn-secondary boton_cerrar"
                     data-dismiss="modal"
+                    @click="ini()"
                   >
                     Cerrar
                   </button>
@@ -213,10 +223,9 @@
                   />
                 </div>
 
-                <div v-if="error" class="spamf p-2 m-2 col-lg-6 aling-center">
+                <div style="display:none" id="cor" class="spamf p-2 m-2 col-lg-6 aling-center">
                   <samp class=""
-                    >las credenciales no son errones, verifique los
-                    datos...</samp
+                    >Se creo un usuario nuevo </samp
                   >
                 </div>
                 <div v-if="guardo" class="spamv p-2 m-2 col-lg-6 aling-center">
@@ -228,8 +237,8 @@
                     type="button"
                     class="btn btn-secondary boton_cerrar"
                     data-dismiss="modal"
-                  >
-                    Cerrar
+                    @click="cerro()"
+                  > Cerrar
                   </button>
                   <button type="submit" class="btn btn-primary">
                     Registrar
@@ -253,13 +262,7 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
           Search
         </button>
-        <button
-          class="btn btn-sm btn-default"
-          @click="$router.push('/categoria')"
-          style="color: #767676"
-        >
-          Mis Categorias
-        </button>
+        
       </form>
       <!-- //////////////////////////// -->
     </div>
@@ -285,16 +288,47 @@ export default {
       error: false,
       guardo: false,
 
+      usuarios:"",
       nombre: "",
       correo: "",
       clave: "",
+      empre:[],
+      icon:'',
     };
   },
   mounted() {
     /* this.traerEmpresa() */
     this.consulta();
+      const user = localStorage.getItem("user")
+      const tokens = localStorage.getItem("token")
+      this.usuarios = user
+      
+      axios
+        .get("http://localhost:1337/empresas/ve", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+        .then((response) => {
+          this.empre = response.data;
+          this.icon = this.empre[0].img.url
+          console.log(this.icon)
+        });
+
+
   },
+
   methods: {
+    ini(){
+        window.location.reload();
+    },
+    cerro(){
+        document.getElementById("clave").value="";
+        document.getElementById("correo").value="";
+        document.getElementById("nombre").value="";
+        document.getElementById("cor").style.display="none"
+    },
+
     consulta() {
       if (localStorage.getItem("token") == null) {
         document.getElementById("ing").style.display = "block";
@@ -315,9 +349,11 @@ export default {
           email: this.correo,
           password: this.clave,
         })
-        .then((response) => {
-          this.$router.push("/");
-        });
+         document.getElementById("clave").value="";
+        document.getElementById("correo").value="";
+        document.getElementById("nombre").value="";
+        document.getElementById("cor").style.display="block"
+
     },
 
     login() {
@@ -361,7 +397,7 @@ export default {
       document.getElementById("ru").style.display = "Block";
       localStorage.removeItem("token"),
         localStorage.removeItem("user"),
-        this.$router.push("/");
+        window.location.reload();
     },
   },
 };

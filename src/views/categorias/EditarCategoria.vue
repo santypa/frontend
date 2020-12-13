@@ -14,7 +14,7 @@
             />
             <br />
 
-            <b-button
+            <button
               class="mt-2"
               type="submit"
               @click="showAlert"
@@ -24,11 +24,14 @@
               onsubmit="setTimeout(function () { window.location.reload(); }, 10)"
             >
               Guardar
-            </b-button>
+            </button>
             <!--  <b-button  class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mb-4" type="submit" variant="success">Guardar</b-button> -->
           </form>
+          <div class="alert alert-danger" id="alert" style="display: none; " role="alert" data-alerts="alerts">
+                 SE EDITO LA NUEVA CATEGORIA ....
+          </div>
           <div v-if="loading">
-            <b-alert
+            <alert
               :show="dismissCountDown"
               dismissible
               variant="success"
@@ -36,13 +39,13 @@
               @dismiss-count-down="countDownChanged"
             >
               <p>Producto editado Correctamente</p>
-              <b-progress
+              <progress
                 variant="success"
                 :max="dismissSecs"
                 :value="dismissCountDown"
                 height="4px"
-              ></b-progress>
-            </b-alert>
+              ></progress>
+            </alert>
           </div>
         </div>
       </div>
@@ -81,6 +84,7 @@ export default {
       });
   },
   methods: {
+    
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
     },
@@ -88,6 +92,8 @@ export default {
       this.dismissCountDown = this.dismissSecs;
     },
     guardar() {
+
+      const tokens = localStorage.getItem("token")
       this.loading = false;
       axios
         .put(
@@ -97,20 +103,16 @@ export default {
           },
           {
             headers: {
-              Authorization: "Bearer " + this.token,
+              Authorization: "Bearer " + tokens,
             },
           }
         )
+          document.getElementById("alert").style.display="block"
+          this.$router.push("/categoria");
 
-        .then((response) => {
-          this.loading = true;
-
-          redireccionar();
-        });
-      function redireccionar() {
-        setTimeout("location.href='/categoria'", 3000);
-      }
+      
     },
   },
 };
 </script>
+

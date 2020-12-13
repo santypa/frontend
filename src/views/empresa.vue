@@ -38,7 +38,7 @@
         <div v-if="imageprevista === ''"></div>
         <div v-else>
           <div class="row justify-content-center tamaño-imagen">
-            <img class="imgrespon" :src="imageprevista" />
+            <img class="tamaño-imagen mb-4" :src="imageprevista" />
           </div>
         </div>
         <div class="row">
@@ -299,5 +299,11 @@ input#imagen {
   width: 300px;
   height: 300px;
   opacity: 0;
+}
+.tamaño-imagen {
+  max-width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  margin-bottom: 5%;
 }
 </style>

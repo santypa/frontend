@@ -90,4 +90,59 @@ body {
   width: 80%;
   border: 1px solid rgb(32, 32, 34);
 }
+
+
+h1 {
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 15px;
+}
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+.tbl-header {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.tbl-content {
+  height: 500px;
+  overflow-x: auto;
+  margin-top: 0px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.tbl-content2 {
+  height: 250px;
+  overflow-x: auto;
+  margin-top: 0px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+th {
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: rgb(0, 0, 0);
+  text-transform: uppercase;
+}
+td {
+  padding: 15px;
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 300;
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+  border-bottom: solid 1px rgb(136, 136, 136);
+}
+
+/* demo styles */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+
+section {
+  margin: 50px;
+}
 </style>
