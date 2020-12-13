@@ -136,13 +136,27 @@ export default {
       /* console.log(e.target.files[0]); */
       /* console.log(this.val)
          console.log(this.ides) */
+      /* const tokens = localStorage.getItem("token");
+
+         axios.get("http://localhost:1337/categorias/ve",
+         { headers: { Authorization: "Bearer " + tokens }})
+         .then((res) => {
+           console.log("asdasd")
+      });   
+ */
     },
 
 
     crearcategoria(){
 
      const tokens = localStorage.getItem("token");
-        axios.get("http://localhost:1337/categorias").then((res) => {
+
+        axios
+        .get("http://localhost:1337/categorias/ve", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }).then((res) => {
         this.cate = res.data;
         this.fo = res.data.length;
         this.j=this.fo+1
@@ -159,7 +173,7 @@ export default {
         }
 
         if (this.i == 1) {
-            console.log("si hay categorias ")
+            console.log("si hay categorias")
             document.getElementById("bt").style.display = "none";
 
             ////////////////////////////////////////////
@@ -193,12 +207,11 @@ export default {
 
         } else{
 
-            console.log("no hay categorias ")
-            axios
-         .post(
-           "http://localhost:1337/categorias",
-           { nombre: this.cat },
-           { headers: { Authorization: "Bearer " + tokens } }
+        console.log("no hay categorias ")
+
+        axios.post("http://localhost:1337/categorias",
+           {nombre: this.cat },
+           {headers: { Authorization: "Bearer " +tokens } }
          )
             /* document.getElementById("bt").style.display = "none";
             document.getElementById("cat").style.display = "none";
@@ -210,28 +223,32 @@ export default {
       });   
     },
 
-/* 
-    guardar() {
-      
-    },
- */
     crear(){
-      console.log("hola mundo")
+      
       const tokens = localStorage.getItem("token");
 
-      axios.get("http://localhost:1337/categorias").then((res) => {
+      axios
+        .get("http://localhost:1337/categorias/ve", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }).then((res) => {
+
         this.cate = res.data;
         this.fo = res.data.length;
         this.j=this.fo+1
         this.fi = 0;
+       
 
         for (var fe = 0; fe < this.fo; fe++) {
           if (this.cate[fe].nombre == this.cat) {
             this.fi = this.cate[fe].id;
             this.i = 1;
             fe = this.j
+            console.log("si")
           } else {
             this.i = 2;
+            console.log("no")
           }
         }
 
