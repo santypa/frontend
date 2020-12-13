@@ -46,7 +46,10 @@ var routes = [{
 }, {
   path: '/empresa',
   name: 'empresa',
-  component: _empresa["default"]
+  component: _empresa["default"],
+  meta: {
+    requireAuth: true
+  }
 }, {
   path: '/producto/:emp',
   name: 'producto',

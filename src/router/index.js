@@ -41,12 +41,17 @@ const routes = [
     {
       path:'/empresa',
      name: 'empresa',
-     component: empresa
+     component: empresa,
+     meta:{
+      requireAuth: true 
+    } 
     },
+    
     {
-      path:'/producto/:emp',
+     path:'/producto/:emp',
      name: 'producto',
      component: product
+     
     },
     
 

@@ -4,7 +4,7 @@
   <div>
     <b-navbar variant="faded" type="light">
       <b-navbar-brand href="#">
-        <img src="https://placekitten.com/g/30/30" style="border-radius:40px">
+        <img src="https://placekitten.com/g/30/30" style="border-radius:40px; height: 40px; width: 40px;">
       </b-navbar-brand>
     </b-navbar>
   </div>
