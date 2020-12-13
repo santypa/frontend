@@ -39,6 +39,7 @@
 <script>
 import axios from "axios";
 import debounce from "debounce";
+
 export default {
   name: "Categoria",
   data() {
