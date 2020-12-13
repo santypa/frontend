@@ -185,11 +185,12 @@ export default {
               })
               .then((response) => {
                 console.log(" guardar");
+                this.$router.push("/productos");
               });
           } else {
-            /* document.getElementById("alert").style.display = "block";
+            document.getElementById("alert").style.display = "block";
             document.getElementById("descripcion").value = " ";
-            document.getElementById("imagen").value = " "; */
+            document.getElementById("imagen").value = " ";
             this.$router.push("/");
 
           }
@@ -203,11 +204,9 @@ export default {
               .then((response) => {
                  console.log("se guardo categoria");
                  this.$router.push("/");
-                 window.location.reload();
                  document.getElementById("alert").style.display = "block";
-                /*  document.getElementById("descripcion").value = "";
-                 document.getElementById("imagen").value = ""; */
-                 
+                 document.getElementById("descripcion").value = "";
+                 document.getElementById("imagen").value = "";
                  this.j = 3;
               });
           

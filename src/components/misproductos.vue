@@ -44,7 +44,7 @@ export default {
     .then(res => res.json())
     .then(data => {
         this.imagenes = data;
-      console.log(data)
+        /* console.log(data) */
     })
     
          
@@ -58,9 +58,9 @@ export default {
                     Authorization: "Bearer "  + localStorage.getItem('token') 
                 } 
             }),then((response)=>{
-                this.imagenes =  response.data
+               /*  this.imagenes =  response.data */
                /*  console.log("se elimino correctamente") */
-                this.$router.push("/productos");
+                this.$router.push("/");
                
             });
         }
